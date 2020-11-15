@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Shark : MonoBehaviour
 {
@@ -9,8 +10,9 @@ public class Shark : MonoBehaviour
     public float maxSpeedTime;
     public float maxSpeedStopTime;
     public float TurnSpeed;
-    public Controller controller;
-
+    public bool wrongWay;
+    public PlayerController data;
+    public Vector3 trackDirection;
 
     const float EPS = 0.000001f;
     Rigidbody2D shark;
@@ -37,20 +39,17 @@ public class Shark : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(controller.Up_Button()))
-            reqiredSpeed = maxSpeed;
-        if (Input.GetKeyUp(controller.Up_Button()))
-            reqiredSpeed = 0;
-        if (Input.GetKey(controller.Left_Button()))
-            shark.transform.Rotate(Vector3.forward * TurnSpeed * Time.deltaTime);
-        if (Input.GetKey(controller.Right_Button()))
-            shark.transform.Rotate(Vector3.back * TurnSpeed * Time.deltaTime);
-
+        Shark_Controller();
     }
 
     void Direction_Control()
     {
         Vector3 currenDirection = (front.position - rear.position).normalized;
+        float angle = Vector3.Angle(currenDirection, trackDirection);
+        if (angle > 100)
+            wrongWay = true;
+        else
+            wrongWay = false;
         if (currenDirection == direction)
             return;
         direction = currenDirection;
@@ -76,5 +75,27 @@ public class Shark : MonoBehaviour
         else
             shark.velocity = direction * (currentSpeed - maxSpeedChange);
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Track"))
+        {
+            Transform trackFront = collision.transform.Find("Front").GetComponent<Transform>();
+            Transform trackRear = collision.transform.Find("Rear").GetComponent<Transform>();
+            trackDirection = (trackFront.position - trackRear.position).normalized;
+        }
+    }
+
+    private void Shark_Controller()
+    {
+        if (Input.GetKeyDown(data.Up_Button))
+            reqiredSpeed = maxSpeed;
+        if (Input.GetKeyUp(data.Up_Button))
+            reqiredSpeed = 0;
+        if (Input.GetKey(data.Left_Button))
+            shark.transform.Rotate(Vector3.forward * TurnSpeed * Time.deltaTime);
+        if (Input.GetKey(data.Right_Button))
+            shark.transform.Rotate(Vector3.back * TurnSpeed * Time.deltaTime);
     }
 }
