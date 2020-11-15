@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe0eea4a4b3e00f4b8c7ee282624e81e, type: 3}
   m_Name: Player1
   m_EditorClassIdentifier: Assembly-CSharp::Player1Controller
+  nickname: Player1
   Up_Button: 119
   Left_Button: 97
   Right_Button: 100
