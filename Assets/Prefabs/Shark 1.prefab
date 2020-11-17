@@ -109,10 +109,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e840d0c404cce40a0ed1a30bb6080c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 5
-  maxSpeedTime: 2
-  maxSpeedStopTime: 1
-  TurnSpeed: 50
+  maxSpeed: 25
+  maxSpeedTime: 2.5
+  maxSpeedStopTime: 0.5
+  TurnSpeed: 150
   pooCooldownTime: 2
   data: {fileID: 11400000, guid: d972bf06cd6cff74896d07a7275c7776, type: 2}
   poo: {fileID: 7991775394874012631, guid: 8f5e7648a2b0bc34587947c097143014, type: 3}
