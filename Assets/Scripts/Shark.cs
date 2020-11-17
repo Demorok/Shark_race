@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
@@ -10,24 +11,35 @@ public class Shark : MonoBehaviour
     public float maxSpeedTime;
     public float maxSpeedStopTime;
     public float TurnSpeed;
-    public bool wrongWay;
-    public PlayerController data;
-    public Vector3 trackDirection;
+    public float pooCooldownTime;
+    public PlayerData data;
+    public GameObject poo;
+
+    public bool wrongWay { get; private set; }
+    public float cooldownTimeNormalised { get; private set; }
 
     const float EPS = 0.000001f;
+
+
     Rigidbody2D shark;
     Transform front;
     Transform rear;
+    Transform pooSpawner;
     Vector3 direction;
+    Vector3 trackDirection;
+
     float acceleration;
     float deceleration;
     float reqiredSpeed;
+    float timeToReady;
+    float recoveryTime;
 
     void Start()
     {
         shark = GetComponent<Rigidbody2D>();
         front = transform.Find("Front").GetComponent<Transform>();
         rear = transform.Find("Rear").GetComponent<Transform>();
+        pooSpawner = transform.Find("PooSpawner").GetComponent<Transform>();
         direction = (front.position - rear.position).normalized;
     }
 
@@ -40,6 +52,12 @@ public class Shark : MonoBehaviour
     void Update()
     {
         Shark_Controller();
+        Time_Control();
+    }
+
+    private void Time_Control()
+    {
+        cooldownTimeNormalised = (timeToReady - Time.time) / pooCooldownTime;
     }
 
     void Direction_Control()
@@ -58,6 +76,8 @@ public class Shark : MonoBehaviour
 
     void Speed_Control()
     {
+        if (recoveryTime - Time.time > 0)
+            reqiredSpeed = 0;
         if (reqiredSpeed > maxSpeed)
             reqiredSpeed = maxSpeed;
         if (Mathf.Abs(shark.velocity.sqrMagnitude - reqiredSpeed * reqiredSpeed) <= EPS)
@@ -89,7 +109,7 @@ public class Shark : MonoBehaviour
 
     private void Shark_Controller()
     {
-        if (Input.GetKeyDown(data.Up_Button))
+        if (Input.GetKey(data.Up_Button))
             reqiredSpeed = maxSpeed;
         if (Input.GetKeyUp(data.Up_Button))
             reqiredSpeed = 0;
@@ -97,5 +117,21 @@ public class Shark : MonoBehaviour
             shark.transform.Rotate(Vector3.forward * TurnSpeed * Time.deltaTime);
         if (Input.GetKey(data.Right_Button))
             shark.transform.Rotate(Vector3.back * TurnSpeed * Time.deltaTime);
+        if (Input.GetKey(data.Trap_Button))
+            Deploy_Poo();
+    }
+
+    private void Deploy_Poo()
+    {
+        if (cooldownTimeNormalised <= 0)
+        {
+            Instantiate(poo, pooSpawner.position, Quaternion.Euler(0,0,0));
+            timeToReady = Time.time + pooCooldownTime;
+        }
+    }
+
+    public void Poison(float seconds)
+    {
+        recoveryTime = Time.time + seconds;
     }
 }

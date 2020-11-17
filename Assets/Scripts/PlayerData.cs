@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "PlayerData", menuName = "Player Data", order = 51)]
-public class PlayerController : ScriptableObject
+public class PlayerData : ScriptableObject
 {
     public string nickname;
     public KeyCode Up_Button;
