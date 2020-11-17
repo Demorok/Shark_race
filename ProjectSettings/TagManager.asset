@@ -42,3 +42,24 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Terrain
+    uniqueID: 1274560827
+    locked: 0
+  - name: Track
+    uniqueID: 2792659377
+    locked: 0
+  - name: StopLine1
+    uniqueID: 1408393475
+    locked: 0
+  - name: StopLine2
+    uniqueID: 439059919
+    locked: 0
+  - name: Poo
+    uniqueID: 194266757
+    locked: 0
+  - name: Player1
+    uniqueID: 1822888723
+    locked: 0
+  - name: Player2
+    uniqueID: 1481381379
+    locked: 0

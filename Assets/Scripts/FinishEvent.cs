@@ -1,23 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class FinishEvent : MonoBehaviour
 {
-    public GameObject endingWindow;
-
-    Text text;
-
-    private void Start()
-    {
-        text = endingWindow.transform.Find("Text").GetComponent<Text>();
-    }
+    public static string winnerName { get; private set; }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Time.timeScale = 0;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Shark shark = collision.GetComponent<Shark>();
-        text.text = shark.data.name + " is the winner!";
-        endingWindow.SetActive(true);
+        winnerName = shark.data.name;
     }
 }
