@@ -7,8 +7,8 @@ public class Hankey : MonoBehaviour
     public float poisonTime;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Shark shark = collision.GetComponent<Shark>();
-        shark.Poison(poisonTime);
-        Destroy(gameObject);
+            Shark shark = collision.GetComponent<Shark>();
+            shark.Poison(poisonTime);
+            Destroy(gameObject);
     }
 }

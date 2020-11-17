@@ -14,6 +14,7 @@ public class Shark : MonoBehaviour
     public float pooCooldownTime;
     public PlayerData data;
     public GameObject poo;
+    public SpriteRenderer sharkImage;
 
     public bool wrongWay { get; private set; }
     public float cooldownTimeNormalised { get; private set; }
@@ -47,6 +48,10 @@ public class Shark : MonoBehaviour
     {
         Speed_Control();
         Direction_Control();
+        if (transform.rotation.eulerAngles.z > 180)
+            sharkImage.flipX = false;
+        else
+            sharkImage.flipX = true;
     }
 
     void Update()

@@ -21,10 +21,8 @@ public class PlayerState : MonoBehaviour
     void Start()
     {
         clone = Instantiate(playerSpawn, transform);
-        if (reversed)
-            clone.transform.Rotate(0,0,-90);
-        else
-            clone.transform.Rotate(0, 0, 90);
+        if (!reversed)
+            clone.transform.Rotate(0,0,180);
         shark = clone.GetComponent<Shark>();
     }
     private void Update()

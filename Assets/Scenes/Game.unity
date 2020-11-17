@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 70714122}
   - component: {fileID: 70714121}
   m_Layer: 13
-  m_Name: Spawner2
+  m_Name: SpawnerImage
   m_TagString: Finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -878,7 +878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 082b48ef5f03d1243a4d48f63781619e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerSpawn: {fileID: 1094579239144338916, guid: 2fae2275dc9ee5d4d81cd1fd33532af7,
+  playerSpawn: {fileID: 1094579239144338916, guid: b8f788f4877786d4b9ecaa7f68bf524d,
     type: 3}
   playerDoor: {fileID: 1909774416}
   reversed: 1
@@ -2417,7 +2417,7 @@ MonoBehaviour:
     type: 3}
   playerDoor: {fileID: 824984527}
   reversed: 0
-  winCondition: 10
+  winCondition: 1
   info: {fileID: 30820615}
   score: {fileID: 1316810765}
   cooldown: {fileID: 535463619}
@@ -2693,7 +2693,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1705947505}
   - component: {fileID: 1705947506}
-  m_Layer: 0
+  - component: {fileID: 1705947507}
+  m_Layer: 17
   m_Name: Gate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2764,6 +2765,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1705947507
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705947504}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.72, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4.04, y: 3.64}
+    newSize: {x: 4.04, y: 3.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 2}
+  m_EdgeRadius: 0
 --- !u!1 &1711075851
 GameObject:
   m_ObjectHideFlags: 0
@@ -2919,7 +2946,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1964797297}
   - component: {fileID: 1964797298}
-  m_Layer: 0
+  - component: {fileID: 1964797299}
+  m_Layer: 17
   m_Name: Gate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2990,6 +3018,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1964797299
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1964797296}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.7, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 4.04, y: 3.64}
+    newSize: {x: 4.04, y: 3.64}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.3, y: 2}
+  m_EdgeRadius: 0
 --- !u!1 &1988006545
 GameObject:
   m_ObjectHideFlags: 0
