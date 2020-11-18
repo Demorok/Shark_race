@@ -32,17 +32,24 @@ public class PlayerState : MonoBehaviour
         else
             info.text = "";
         if (counter >= winCondition)
+        {
             Destroy(playerDoor);
+            shark.Set_Winner(true);
+        }
         cooldown.fillAmount = shark.cooldownTimeNormalised;
+        if (shark.Get_Winner())
+            info.text = shark.data.nickname + " claim your prize!";
 
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Shark shark = collision.GetComponent<Shark>();
-        if (shark.wrongWay)
-            --counter;
-        else
-            ++counter;
-        score.text = Mathf.Max(counter, 0).ToString();
+        if (!shark.Get_Winner())
+        {
+            if (shark.wrongWay)
+                --counter;
+            else
+                ++counter;
+            score.text = Mathf.Max(counter, 0).ToString();
+        }
     }
 }

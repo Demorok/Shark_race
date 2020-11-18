@@ -8,6 +8,7 @@ public class Countdown : MonoBehaviour
     public float countdown;
     public Text text;
     public AudioSource mainTheme;
+    public AudioSource startSound;
 
     float timeToStart;
 
@@ -27,6 +28,7 @@ public class Countdown : MonoBehaviour
         {
             Time.timeScale = 1;
             mainTheme.Play();
+            startSound.Play();
             Destroy(gameObject);
         }
 

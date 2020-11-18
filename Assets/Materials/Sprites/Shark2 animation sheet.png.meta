@@ -1,10 +1,19 @@
 fileFormatVersion: 2
-guid: 084a9ccbfd59cfe459551dfe98ffa3bf
+guid: cccd50acac9d5c34da7ca01c141e373a
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 627491535749053019
-    second: Shark Model 2 ver 1.1_0
+      213: -8528848675275550992
+    second: Shark2 animation sheet_0
+  - first:
+      213: -8996053940872645394
+    second: Shark2 animation sheet_1
+  - first:
+      213: 3271412608140261434
+    second: Shark2 animation sheet_2
+  - first:
+      213: -2631985814599866279
+    second: Shark2 animation sheet_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -43,11 +52,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 9
-  spritePivot: {x: 0.46195692, y: 0.50000006}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -90,13 +99,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Shark Model 2 ver 1.1_0
+      name: Shark2 animation sheet_0
       rect:
         serializedVersion: 2
-        x: 20
+        x: 5
         y: 60
-        width: 480
-        height: 689
+        width: 500
+        height: 700
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -104,8 +113,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b5af2e72a3c45b800800000000000000
-      internalID: 627491535749053019
+      spriteID: 0fec32f415173a980800000000000000
+      internalID: -8528848675275550992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shark2 animation sheet_1
+      rect:
+        serializedVersion: 2
+        x: 518
+        y: 60
+        width: 500
+        height: 700
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ee4780a9a98972380800000000000000
+      internalID: -8996053940872645394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shark2 animation sheet_2
+      rect:
+        serializedVersion: 2
+        x: 1061
+        y: 60
+        width: 500
+        height: 700
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a383fe53f64666d20800000000000000
+      internalID: 3271412608140261434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shark2 animation sheet_3
+      rect:
+        serializedVersion: 2
+        x: 1589
+        y: 60
+        width: 500
+        height: 700
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 95868e2b8de497bd0800000000000000
+      internalID: -2631985814599866279
       vertices: []
       indices: 
       edges: []

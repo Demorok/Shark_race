@@ -13,8 +13,9 @@ public class Shark : MonoBehaviour
     public float TurnSpeed;
     public float pooCooldownTime;
     public PlayerData data;
-    public GameObject poo;
+    public GameObject bomb;
     public SpriteRenderer sharkImage;
+    public AudioSource stunSound;
 
     public bool wrongWay { get; private set; }
     public float cooldownTimeNormalised { get; private set; }
@@ -29,11 +30,15 @@ public class Shark : MonoBehaviour
     Vector3 direction;
     Vector3 trackDirection;
 
+    Animator anim;
+    AudioSource deployBombSound;
+
     float acceleration;
     float deceleration;
     float reqiredSpeed;
     float timeToReady;
     float recoveryTime;
+    bool winner = false;
 
     void Start()
     {
@@ -41,6 +46,10 @@ public class Shark : MonoBehaviour
         front = transform.Find("Front").GetComponent<Transform>();
         rear = transform.Find("Rear").GetComponent<Transform>();
         pooSpawner = transform.Find("PooSpawner").GetComponent<Transform>();
+
+        deployBombSound = GetComponent<AudioSource>();
+        anim = GetComponent<Animator>();
+
         direction = (front.position - rear.position).normalized;
     }
 
@@ -69,23 +78,26 @@ public class Shark : MonoBehaviour
     {
         Vector3 currenDirection = (front.position - rear.position).normalized;
         float angle = Vector3.Angle(currenDirection, trackDirection);
-        if (angle > 100)
-            wrongWay = true;
-        else
-            wrongWay = false;
-        if (currenDirection == direction)
-            return;
+        if (!winner)
+            if (angle > 100)
+                wrongWay = true;
+            else
+                wrongWay = false;
+            if (currenDirection == direction)
+                return;
         direction = currenDirection;
         shark.velocity = (direction * shark.velocity.magnitude);
     }
 
     void Speed_Control()
     {
+        float currentSqrSpeed = shark.velocity.sqrMagnitude;
+        anim.SetFloat("velocity", currentSqrSpeed);
         if (recoveryTime - Time.time > 0)
             reqiredSpeed = 0;
         if (reqiredSpeed > maxSpeed)
             reqiredSpeed = maxSpeed;
-        if (Mathf.Abs(shark.velocity.sqrMagnitude - reqiredSpeed * reqiredSpeed) <= EPS)
+        if (Mathf.Abs(currentSqrSpeed - reqiredSpeed * reqiredSpeed) <= EPS)
             return;
         acceleration = maxSpeed / maxSpeedTime * Time.fixedDeltaTime;
         deceleration = maxSpeed / maxSpeedStopTime * Time.fixedDeltaTime;
@@ -128,15 +140,27 @@ public class Shark : MonoBehaviour
 
     private void Deploy_Poo()
     {
-        if (cooldownTimeNormalised <= 0)
+        if (cooldownTimeNormalised <= 0 && Time.timeScale > 0 && (!winner))
         {
-            Instantiate(poo, pooSpawner.position, Quaternion.Euler(0,0,0));
+            Instantiate(bomb, pooSpawner.position, Quaternion.Euler(0,0,0));
             timeToReady = Time.time + pooCooldownTime;
+            deployBombSound.Play();
         }
     }
 
     public void Poison(float seconds)
     {
         recoveryTime = Time.time + seconds;
+        stunSound.Play();
+    }
+
+    public void Set_Winner(bool state)
+    {
+        winner = state;
+    }
+
+    public bool Get_Winner()
+    {
+       return winner;
     }
 }
