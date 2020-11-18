@@ -7,6 +7,7 @@ public class PlayerState : MonoBehaviour
 {
     public GameObject playerSpawn;
     public GameObject playerDoor;
+    public StreamGenerator sg;
     public bool reversed;
     public int winCondition;
 
@@ -14,19 +15,23 @@ public class PlayerState : MonoBehaviour
     public Text score;
     public Image cooldown;
 
+    public Rigidbody2D sharkBody { get; private set; }
+    public int counter { get; private set; }
 
-    int counter = -1; //для нивелирования триггера при спавне
     GameObject clone;
     Shark shark;
     void Start()
     {
+        counter = -1; //для нивелирования триггера при спавне
         clone = Instantiate(playerSpawn, transform);
         if (!reversed)
             clone.transform.Rotate(0,0,180);
         shark = clone.GetComponent<Shark>();
+        sharkBody = clone.GetComponent<Rigidbody2D>();
     }
     private void Update()
     {
+        shark.flow = sg.flow;
         if (shark.wrongWay)
             info.text = shark.data.nickname + " wrong way!";
         else

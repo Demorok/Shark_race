@@ -19,6 +19,7 @@ public class Shark : MonoBehaviour
 
     public bool wrongWay { get; private set; }
     public float cooldownTimeNormalised { get; private set; }
+    public Vector3 flow { private get; set; }
 
     const float EPS = 0.000001f;
 
@@ -57,16 +58,16 @@ public class Shark : MonoBehaviour
     {
         Speed_Control();
         Direction_Control();
-        if (transform.rotation.eulerAngles.z > 180)
-            sharkImage.flipX = false;
-        else
-            sharkImage.flipX = true;
     }
 
     void Update()
     {
         Shark_Controller();
         Time_Control();
+        if (transform.rotation.eulerAngles.z > 180)
+            sharkImage.flipX = false;
+        else
+            sharkImage.flipX = true;
     }
 
     private void Time_Control()
@@ -83,10 +84,8 @@ public class Shark : MonoBehaviour
                 wrongWay = true;
             else
                 wrongWay = false;
-            if (currenDirection == direction)
-                return;
-        direction = currenDirection;
-        shark.velocity = (direction * shark.velocity.magnitude);
+        if (currenDirection != direction)
+            direction = currenDirection;
     }
 
     void Speed_Control()
@@ -98,7 +97,10 @@ public class Shark : MonoBehaviour
         if (reqiredSpeed > maxSpeed)
             reqiredSpeed = maxSpeed;
         if (Mathf.Abs(currentSqrSpeed - reqiredSpeed * reqiredSpeed) <= EPS)
+        {
+            shark.velocity = flow;
             return;
+        }
         acceleration = maxSpeed / maxSpeedTime * Time.fixedDeltaTime;
         deceleration = maxSpeed / maxSpeedStopTime * Time.fixedDeltaTime;
         float currentSpeed = shark.velocity.magnitude;
@@ -108,9 +110,9 @@ public class Shark : MonoBehaviour
             shark.velocity = direction * reqiredSpeed;
         else
         if (speedDifference > 0)
-            shark.velocity = direction * (currentSpeed + maxSpeedChange);
+            shark.velocity = direction * (currentSpeed + maxSpeedChange) + flow;
         else
-            shark.velocity = direction * (currentSpeed - maxSpeedChange);
+            shark.velocity = direction * (currentSpeed - maxSpeedChange) + flow;
 
     }
 
