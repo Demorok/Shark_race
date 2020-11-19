@@ -19,7 +19,7 @@ public class Shark : MonoBehaviour
 
     public bool wrongWay { get; private set; }
     public float cooldownTimeNormalised { get; private set; }
-    public Vector3 flow { private get; set; }
+    public int checkpoints { get; private set; }
 
     const float EPS = 0.000001f;
 
@@ -40,6 +40,9 @@ public class Shark : MonoBehaviour
     float timeToReady;
     float recoveryTime;
     bool winner = false;
+
+    string prePreviousCheckpoint;
+    string previousCheckpoint;
 
     void Start()
     {
@@ -90,17 +93,14 @@ public class Shark : MonoBehaviour
 
     void Speed_Control()
     {
-        float currentSqrSpeed = shark.velocity.sqrMagnitude;
-        anim.SetFloat("velocity", currentSqrSpeed);
+        float currentSharkSqrSpeed = shark.velocity.sqrMagnitude;
+        anim.SetFloat("velocity", currentSharkSqrSpeed);
         if (recoveryTime - Time.time > 0)
             reqiredSpeed = 0;
         if (reqiredSpeed > maxSpeed)
             reqiredSpeed = maxSpeed;
-        if (Mathf.Abs(currentSqrSpeed - reqiredSpeed * reqiredSpeed) <= EPS)
-        {
-            shark.velocity = flow;
+        if (Mathf.Abs(currentSharkSqrSpeed - reqiredSpeed * reqiredSpeed) <= EPS)
             return;
-        }
         acceleration = maxSpeed / maxSpeedTime * Time.fixedDeltaTime;
         deceleration = maxSpeed / maxSpeedStopTime * Time.fixedDeltaTime;
         float currentSpeed = shark.velocity.magnitude;
@@ -110,9 +110,9 @@ public class Shark : MonoBehaviour
             shark.velocity = direction * reqiredSpeed;
         else
         if (speedDifference > 0)
-            shark.velocity = direction * (currentSpeed + maxSpeedChange) + flow;
+            shark.velocity = direction * (currentSpeed + maxSpeedChange);
         else
-            shark.velocity = direction * (currentSpeed - maxSpeedChange) + flow;
+            shark.velocity = direction * (currentSpeed - maxSpeedChange);
 
     }
 
@@ -124,6 +124,16 @@ public class Shark : MonoBehaviour
             Transform trackRear = collision.transform.Find("Rear").GetComponent<Transform>();
             trackDirection = (trackFront.position - trackRear.position).normalized;
         }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Track"))
+            if (collision.name != previousCheckpoint & collision.name!= prePreviousCheckpoint & !wrongWay)
+            {
+                prePreviousCheckpoint = previousCheckpoint;
+                previousCheckpoint = collision.name;
+                checkpoints++;
+            }
     }
 
     private void Shark_Controller()
@@ -164,5 +174,12 @@ public class Shark : MonoBehaviour
     public bool Get_Winner()
     {
        return winner;
+    }
+
+    public void New_Lap()
+    {
+        checkpoints = 0;
+        previousCheckpoint = "";
+        prePreviousCheckpoint = "";
     }
 }

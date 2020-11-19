@@ -10,8 +10,9 @@ public class StreamGenerator : MonoBehaviour
     public float flowPower;
     public PlayerState player1;
     public PlayerState player2;
+    public Transform movingFlow;
 
-    public Vector3 flow { get; private set; }
+    Vector3 flow;
 
     const float EPS = 0.000001f;
 
@@ -30,7 +31,6 @@ public class StreamGenerator : MonoBehaviour
         rear = transform.Find("Rear").GetComponent<Transform>();
         direction = (front.position - rear.position).normalized;
         flow = direction * (player1.counter + player2.counter) * flowPower;
-        timeToChange = Time.time + timeBeforeChange;
         timeToTurn = Time.time + turnTime;
     }
     private void Update()
@@ -46,6 +46,7 @@ public class StreamGenerator : MonoBehaviour
     private void FixedUpdate()
     {
         Turn_Flow();
+        movingFlow.position += -flow * Time.fixedDeltaTime;
     }
 
     void Turn_Flow()
@@ -56,7 +57,7 @@ public class StreamGenerator : MonoBehaviour
             angleChangeStep = turnDirection > 0 ? angleChangeStep : -angleChangeStep;
             transform.Rotate(Vector3.forward * angleChangeStep);
             direction = (front.position - rear.position).normalized;
-            flow = direction * (player1.counter + player2.counter + 1) * flowPower;
+            flow = direction * (player1.counter + player2.counter) * flowPower;
         }
     }
 }
