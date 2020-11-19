@@ -14,6 +14,18 @@ TextureImporter:
   - first:
       213: 1731456682115028448
     second: Shark 1 Animaton sheet_3
+  - first:
+      213: -471526426803230073
+    second: Shark 1 Animaton sheet_0
+  - first:
+      213: -1975126901661133217
+    second: Shark 1 Animaton sheet_1
+  - first:
+      213: -1962730221954087183
+    second: Shark 1 Animaton sheet_2
+  - first:
+      213: -6833696571370188017
+    second: Shark 1 Animaton sheet_3
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -126,19 +138,19 @@ TextureImporter:
       name: Shark 1 Animaton sheet_0
       rect:
         serializedVersion: 2
-        x: 141
-        y: 50
-        width: 412
-        height: 680
-      alignment: 9
-      pivot: {x: 0.39478227, y: 0.55513483}
-      border: {x: 27, y: 0, z: 29, w: 141}
+        x: 65
+        y: 39
+        width: 484
+        height: 636
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e6f11a602b568ac0800000000000000
-      internalID: -3853292236392237340
+      spriteID: 78a2f2c863dc479f0800000000000000
+      internalID: -471526426803230073
       vertices: []
       indices: 
       edges: []
@@ -147,19 +159,19 @@ TextureImporter:
       name: Shark 1 Animaton sheet_1
       rect:
         serializedVersion: 2
-        x: 581
-        y: 42
-        width: 406
-        height: 558
-      alignment: 9
-      pivot: {x: 0.5836867, y: 0.70786697}
-      border: {x: 41, y: 8, z: 23, w: 11}
+        x: 582
+        y: 39
+        width: 484
+        height: 636
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5da7e7b9c28ca6f20800000000000000
-      internalID: 3416763361226816213
+      spriteID: f569b203c80f694e0800000000000000
+      internalID: -1975126901661133217
       vertices: []
       indices: 
       edges: []
@@ -168,19 +180,19 @@ TextureImporter:
       name: Shark 1 Animaton sheet_2
       rect:
         serializedVersion: 2
-        x: 1098
-        y: 68
-        width: 370
-        height: 549
-      alignment: 9
-      pivot: {x: 0.6013289, y: 0.6579223}
-      border: {x: 0, y: 0, z: 0, w: 28}
+        x: 1081
+        y: 39
+        width: 484
+        height: 636
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 97c96fe38a26a76b0800000000000000
-      internalID: -5297813536897590151
+      spriteID: 1f6c08a134bf2c4e0800000000000000
+      internalID: -1962730221954087183
       vertices: []
       indices: 
       edges: []
@@ -189,19 +201,19 @@ TextureImporter:
       name: Shark 1 Animaton sheet_3
       rect:
         serializedVersion: 2
-        x: 1543
-        y: 70
-        width: 355
-        height: 518
-      alignment: 9
-      pivot: {x: 0.37128767, y: 0.68772966}
+        x: 1440
+        y: 39
+        width: 484
+        height: 636
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0e55171cdae570810800000000000000
-      internalID: 1731456682115028448
+      spriteID: f03dca0cc25d921a0800000000000000
+      internalID: -6833696571370188017
       vertices: []
       indices: 
       edges: []
