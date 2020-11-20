@@ -73,7 +73,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   livingTime: 22
-  poisonTime: 1.5
+  poisonTime: 1.6
   readiness: 1
 --- !u!50 &9165723047599633782
 Rigidbody2D:
