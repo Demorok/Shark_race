@@ -208,8 +208,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f8e840d0c404cce40a0ed1a30bb6080c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxSpeed: 25
-  maxSpeedTime: 2.5
+  maxSpeed: 23
+  maxSpeedTime: 2.6
   maxSpeedStopTime: 0.5
   TurnSpeed: 150
   pooCooldownTime: 2
@@ -248,11 +248,11 @@ CapsuleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.06, y: 0.06}
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.5, y: 2.05}
   m_Direction: 0
 --- !u!82 &6616578495877591557
 AudioSource:
@@ -409,8 +409,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1253008025624823443}
   - component: {fileID: 5504233512052295133}
-  - component: {fileID: 1606707240685342610}
-  m_Layer: 17
+  m_Layer: 10
   m_Name: Shark
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -481,19 +480,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!70 &1606707240685342610
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5225025156612490848}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.12, y: 0.12}
-  m_Size: {x: 1.03, y: 4.09}
-  m_Direction: 0
