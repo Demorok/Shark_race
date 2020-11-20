@@ -72,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e880044c2388794694d6136a0855130, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  livingTime: 25
+  livingTime: 22
   poisonTime: 1.5
   readiness: 1
 --- !u!50 &9165723047599633782

@@ -2990,10 +2990,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46fb353905139f14788eb9acbf1c89e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBeforeChange: 10
+  timeBeforeChange: 5.5
   turnSpeed: 50
   turnTime: 5
-  flowPower: 1
+  flowPower: 0.5
   player1: {fileID: 1469195470}
   player2: {fileID: 448911971}
   movingFlow: {fileID: 23479653}
