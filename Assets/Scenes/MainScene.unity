@@ -2918,7 +2918,7 @@ MonoBehaviour:
   timeBeforeChange: 10
   turnSpeed: 50
   turnTime: 0
-  flowPower: 10
+  flowPower: 1
   player1: {fileID: 1469195470}
   player2: {fileID: 448911971}
   movingFlow: {fileID: 23479653}
@@ -3028,7 +3028,7 @@ MonoBehaviour:
     type: 3}
   playerDoor: {fileID: 824984527}
   reversed: 0
-  winCondition: 1
+  winCondition: 10
   info: {fileID: 30820615}
   score: {fileID: 1316810765}
   cooldown: {fileID: 535463619}
