@@ -2993,7 +2993,7 @@ MonoBehaviour:
   timeBeforeChange: 5.5
   turnSpeed: 50
   turnTime: 5
-  flowPower: 0.5
+  flowPower: 0.65
   player1: {fileID: 1469195470}
   player2: {fileID: 448911971}
   movingFlow: {fileID: 23479653}
