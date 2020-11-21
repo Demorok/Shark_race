@@ -13,14 +13,13 @@ public class PlayerState : MonoBehaviour
     public Text info;
     public Text score;
     public Image cooldown;
+    public int counter { get; private set; }
 
-
-    int counter = -1; //для нивелирования триггера при спавне
     GameObject clone;
     Shark shark;
     void Start()
     {
-        clone = Instantiate(playerSpawn, transform);
+        clone = Instantiate(playerSpawn, transform.position, transform.rotation);
         if (!reversed)
             clone.transform.Rotate(0,0,180);
         shark = clone.GetComponent<Shark>();
@@ -45,11 +44,12 @@ public class PlayerState : MonoBehaviour
     {
         if (!shark.Get_Winner())
         {
-            if (shark.wrongWay)
-                --counter;
-            else
-                ++counter;
-            score.text = Mathf.Max(counter, 0).ToString();
+            if (!shark.wrongWay & shark.checkpoints >= 4)
+            {
+                shark.New_Lap();
+                counter++;
+            }
+            score.text = counter.ToString();
         }
     }
 }

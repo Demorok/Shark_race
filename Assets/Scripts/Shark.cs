@@ -19,6 +19,7 @@ public class Shark : MonoBehaviour
 
     public bool wrongWay { get; private set; }
     public float cooldownTimeNormalised { get; private set; }
+    public int checkpoints { get; private set; }
 
     const float EPS = 0.000001f;
 
@@ -40,6 +41,9 @@ public class Shark : MonoBehaviour
     float recoveryTime;
     bool winner = false;
 
+    string prePreviousCheckpoint;
+    string previousCheckpoint;
+
     void Start()
     {
         shark = GetComponent<Rigidbody2D>();
@@ -57,16 +61,16 @@ public class Shark : MonoBehaviour
     {
         Speed_Control();
         Direction_Control();
-        if (transform.rotation.eulerAngles.z > 180)
-            sharkImage.flipX = false;
-        else
-            sharkImage.flipX = true;
     }
 
     void Update()
     {
         Shark_Controller();
         Time_Control();
+        if (transform.rotation.eulerAngles.z > 180)
+            sharkImage.flipX = false;
+        else
+            sharkImage.flipX = true;
     }
 
     private void Time_Control()
@@ -83,21 +87,19 @@ public class Shark : MonoBehaviour
                 wrongWay = true;
             else
                 wrongWay = false;
-            if (currenDirection == direction)
-                return;
-        direction = currenDirection;
-        shark.velocity = (direction * shark.velocity.magnitude);
+        if (currenDirection != direction)
+            direction = currenDirection;
     }
 
     void Speed_Control()
     {
-        float currentSqrSpeed = shark.velocity.sqrMagnitude;
-        anim.SetFloat("velocity", currentSqrSpeed);
+        float currentSharkSqrSpeed = shark.velocity.sqrMagnitude;
+        anim.SetFloat("velocity", currentSharkSqrSpeed);
         if (recoveryTime - Time.time > 0)
             reqiredSpeed = 0;
         if (reqiredSpeed > maxSpeed)
             reqiredSpeed = maxSpeed;
-        if (Mathf.Abs(currentSqrSpeed - reqiredSpeed * reqiredSpeed) <= EPS)
+        if (Mathf.Abs(currentSharkSqrSpeed - reqiredSpeed * reqiredSpeed) <= EPS)
             return;
         acceleration = maxSpeed / maxSpeedTime * Time.fixedDeltaTime;
         deceleration = maxSpeed / maxSpeedStopTime * Time.fixedDeltaTime;
@@ -122,6 +124,16 @@ public class Shark : MonoBehaviour
             Transform trackRear = collision.transform.Find("Rear").GetComponent<Transform>();
             trackDirection = (trackFront.position - trackRear.position).normalized;
         }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Track"))
+            if (collision.name != previousCheckpoint & collision.name!= prePreviousCheckpoint & !wrongWay)
+            {
+                prePreviousCheckpoint = previousCheckpoint;
+                previousCheckpoint = collision.name;
+                checkpoints++;
+            }
     }
 
     private void Shark_Controller()
@@ -162,5 +174,12 @@ public class Shark : MonoBehaviour
     public bool Get_Winner()
     {
        return winner;
+    }
+
+    public void New_Lap()
+    {
+        checkpoints = 0;
+        previousCheckpoint = "";
+        prePreviousCheckpoint = "";
     }
 }
