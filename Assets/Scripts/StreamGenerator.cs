@@ -33,20 +33,18 @@ public class StreamGenerator : MonoBehaviour
         if (timeToChange - Time.time <= 0)
             Change_Stream_Direction();
     }
-
+    private void FixedUpdate()
+    {
+        if (timeToTurn - Time.time > 0)
+            Turn_Stream();
+        targetObject.position += -flow * Time.fixedDeltaTime;
+    }
     private void Change_Stream_Direction()
     {
         shadowTurnTime = Random.Range(1, sGData.turnTime + 1);
         timeToTurn = Time.time + shadowTurnTime;
         turnDirection = Random.Range(0, 2);
         timeToChange = Time.time + sGData.timeBeforeChange;
-    }
-
-    private void FixedUpdate()
-    {
-        if (timeToTurn - Time.time > 0)
-            Turn_Stream();
-        targetObject.position += -flow * Time.fixedDeltaTime;
     }
 
     void Turn_Stream()
