@@ -8,7 +8,10 @@ public class Countdown : MonoBehaviour
     public float countdown;
     public Text text;
     public AudioSource mainTheme;
-    public AudioSource startSound;
+
+    AudioClip countdownSound;
+    AudioClip startSound;
+    AudioSource audioPlayer;
 
     float timeToStart;
 
@@ -16,6 +19,11 @@ public class Countdown : MonoBehaviour
     {
         Time.timeScale = 0;
         timeToStart = Time.realtimeSinceStartup + countdown;
+
+        audioPlayer = GetComponent<AudioSource>();
+        countdownSound = Resources.Load<AudioClip>("Sound/Start_3_2_1");
+        startSound = Resources.Load<AudioClip>("Sound/Start_scream");
+        audioPlayer.PlayOneShot(countdownSound);
     }
 
     // Update is called once per frame
@@ -24,13 +32,16 @@ public class Countdown : MonoBehaviour
         float timeLeft = timeToStart - Time.realtimeSinceStartup;
         if (timeLeft > 0)
             text.text = Mathf.Ceil(timeLeft).ToString();
-        else
+        else if (!audioPlayer.isPlaying && Time.timeScale == 0)
         {
+            text.text = "Go!";
+            audioPlayer.PlayOneShot(startSound);
             Time.timeScale = 1;
             mainTheme.Play();
-            startSound.Play();
+        }
+        else if(!audioPlayer.isPlaying && Time.timeScale == 1)
+        {
             Destroy(gameObject);
         }
-
     }
 }

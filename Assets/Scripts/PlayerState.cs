@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class PlayerState : MonoBehaviour
 {
+    public int winCondition;
+    public bool reversed;
     public GameObject playerSpawn;
     public GameObject playerDoor;
-    public bool reversed;
-    public int winCondition;
 
     public Text info;
     public Text score;
@@ -26,10 +26,13 @@ public class PlayerState : MonoBehaviour
     }
     private void Update()
     {
-        if (shark.wrongWay)
-            info.text = shark.data.nickname + " wrong way!";
-        else
-            info.text = "";
+        Wrong_Way_Check();
+        Win_Condition_Check();
+
+    }
+
+    private void Win_Condition_Check()
+    {
         if (counter >= winCondition)
         {
             Destroy(playerDoor);
@@ -37,9 +40,17 @@ public class PlayerState : MonoBehaviour
         }
         cooldown.fillAmount = shark.cooldownTimeNormalised;
         if (shark.Get_Winner())
-            info.text = shark.data.nickname + " claim your prize!";
-
+            info.text = shark.playerData.nickname + " claim your prize!";
     }
+
+    private void Wrong_Way_Check()
+    {
+        if (shark.wrongWay)
+            info.text = shark.playerData.nickname + " wrong way!";
+        else
+            info.text = "";
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!shark.Get_Winner())

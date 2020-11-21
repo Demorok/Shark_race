@@ -9,8 +9,8 @@ public class FinishEvent : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Time.timeScale = 0;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         Shark shark = collision.GetComponent<Shark>();
-        winnerName = shark.data.name;
+        winnerName = shark.playerData.name;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }

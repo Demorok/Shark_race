@@ -4,20 +4,16 @@ using UnityEngine;
 
 public class StreamGenerator : MonoBehaviour
 {
-    public float timeBeforeChange;
-    public float turnSpeed;
-    public float turnTime;
-    public float flowPower;
-    public PlayerState player1;
-    public PlayerState player2;
-    public Transform movingFlow;
-
-    Vector3 flow;
-
-    const float EPS = 0.000001f;
+    public SGData sGData;
+    public PlayerState player1Spawner;
+    public PlayerState player2Spawner;
+    public Transform targetObject;
+    public List<GameObject> engineReferences;
 
     Transform front;
     Transform rear;
+
+    Vector3 flow;
     Vector3 direction;
 
     int turnDirection;
@@ -27,37 +23,49 @@ public class StreamGenerator : MonoBehaviour
 
     void Start()
     {
-        front = transform.Find("Front").GetComponent<Transform>();
-        rear = transform.Find("Rear").GetComponent<Transform>();
+        Initialise_Engine_Variables();
         direction = (front.position - rear.position).normalized;
-        flow = direction * (player1.counter + player2.counter) * flowPower;
-        timeToTurn = Time.time + turnTime;
+        flow = direction * (player1Spawner.counter + player2Spawner.counter) * sGData.streamPower;
+        timeToTurn = Time.time + sGData.turnTime;
     }
     private void Update()
     {
         if (timeToChange - Time.time <= 0)
-        {
-            shadowTurnTime = Random.Range(1, turnTime + 1);
-            timeToTurn = Time.time + shadowTurnTime;
-            turnDirection = Random.Range(0, 2);
-            timeToChange = Time.time + timeBeforeChange;
-        }
-    }
-    private void FixedUpdate()
-    {
-        Turn_Flow();
-        movingFlow.position += -flow * Time.fixedDeltaTime;
+            Change_Stream_Direction();
     }
 
-    void Turn_Flow()
+    private void Change_Stream_Direction()
+    {
+        shadowTurnTime = Random.Range(1, sGData.turnTime + 1);
+        timeToTurn = Time.time + shadowTurnTime;
+        turnDirection = Random.Range(0, 2);
+        timeToChange = Time.time + sGData.timeBeforeChange;
+    }
+
+    private void FixedUpdate()
     {
         if (timeToTurn - Time.time > 0)
-        {
-            float angleChangeStep = turnSpeed * Time.fixedDeltaTime;
+            Turn_Stream();
+        targetObject.position += -flow * Time.fixedDeltaTime;
+    }
+
+    void Turn_Stream()
+    {
+            float angleChangeStep = sGData.turnSpeed * Time.fixedDeltaTime;
             angleChangeStep = turnDirection > 0 ? angleChangeStep : -angleChangeStep;
             transform.Rotate(Vector3.forward * angleChangeStep);
             direction = (front.position - rear.position).normalized;
-            flow = direction * (player1.counter + player2.counter) * flowPower;
+            flow = direction * (player1Spawner.counter + player2Spawner.counter) * sGData.streamPower;
+    }
+
+    void Initialise_Engine_Variables()
+    {
+        foreach (GameObject obj in engineReferences)
+        {
+            if (obj.name == "Front")
+                front = obj.transform;
+            else if (obj.name == "Rear")
+                rear = obj.transform;
         }
     }
 }

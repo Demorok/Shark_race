@@ -88,12 +88,12 @@ AnimatorController:
   m_Name: Shark1
   serializedVersion: 5
   m_AnimatorParameters:
-  - m_Name: velocity
+  - m_Name: sqrvelocity
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 9100000}
+    m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -116,17 +116,17 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 4
-    m_ConditionEvent: velocity
-    m_EventTreshold: 0.001
+    m_ConditionEvent: sqrvelocity
+    m_EventTreshold: 4
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4648198326223408074}
   m_Solo: 0
   m_Mute: 0
   m_IsExit: 0
   serializedVersion: 3
-  m_TransitionDuration: 0.25
-  m_TransitionOffset: 0
-  m_ExitTime: 0.6938776
+  m_TransitionDuration: 0.09023243
+  m_TransitionOffset: 0.015976766
+  m_ExitTime: 0.51780725
   m_HasExitTime: 1
   m_HasFixedDuration: 1
   m_InterruptionSource: 0
@@ -141,8 +141,8 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 3
-    m_ConditionEvent: velocity
-    m_EventTreshold: 0
+    m_ConditionEvent: sqrvelocity
+    m_EventTreshold: 4
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -8672468629433966435}
   m_Solo: 0
