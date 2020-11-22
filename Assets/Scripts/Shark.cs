@@ -99,7 +99,10 @@ public class Shark : MonoBehaviour
             else
                 wrongWay = false;
         if (currenDirection != direction)
+        {
             direction = currenDirection;
+            shark.velocity = direction * shark.velocity.magnitude;
+        }    
     }
 
     void Speed_Control()
